@@ -1,0 +1,62 @@
+imports:
+    - { resource: 'parameters.yaml' }
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    locale: 'en'
+    recaptcha_verify_token_endpoint: https://www.google.com/recaptcha/api/siteverify
+
+    # Homepage and news defaults
+    news_category_slug:     'news'
+    homepage_category_slug: 'homepage'
+    homepage_item_limit:    4
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        public: false       # Allows optimizing the container by removing unused services; this also means
+                            # fetching services directly from the container via $container->get() won't work.
+                            # The best practice is to be explicit about your dependencies anyway.
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    App\:
+        resource: '../src/App/*'
+        exclude: '../src/App/{Entity,Migrations,Tests,Kernel.php}'
+
+    # controllers are imported separately to make sure services can be injected
+    # as action arguments even if you don't extend any base controller class
+    App\Controller\:
+        resource: '../src/App/Controller'
+        tags: ['controller.service_arguments']
+
+    PhpDockerIo\Generator\Generator:
+        factory: [PhpDockerIo\Generator\Factory, create]
+        autowire: true
+
+    guzzle:
+        class: GuzzleHttp\Client
+
+    recaptcha_validator:
+        class:     App\Services\RecaptchaValidator
+        arguments: ['@guzzle', '@request_stack', '%recaptcha_secret_key%', '%recaptcha_verify_token_endpoint%']
+
+    twig.extension.text:
+        class: Twig_Extensions_Extension_Text
+        tags:
+          - { name: twig.extension }
+#
+#    twig.custom_extensions:
+#        class: App\Services\TwigCustomExtensions
+#        tags:
+#          - { name: twig.extension }
+
+    cocur_slugify:
+        class: Cocur\Slugify\Slugify
+
+    App\Services\Slugifier:
+        arguments: ['@cocur_slugify']
+        autowire: true

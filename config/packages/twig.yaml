@@ -1,0 +1,7 @@
+twig:
+    paths: ['%kernel.project_dir%/templates', '%kernel.project_dir%/src/Generator/Template']
+    debug: '%kernel.debug%'
+    strict_variables: '%kernel.debug%'
+    globals:
+        google_analytics:     '%google_analytics%'
+        recaptcha_site_key:   '%recaptcha_site_key%'

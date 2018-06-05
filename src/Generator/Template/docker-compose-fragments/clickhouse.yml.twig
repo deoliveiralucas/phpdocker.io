@@ -1,0 +1,5 @@
+{% if project.hasClickhouse() %}
+    clickhouse:
+      image: yandex/clickhouse-server:latest
+      container_name: {{ clickhouseContainerName }}
+{% endif %}

@@ -1,0 +1,42 @@
+easy_admin:
+    site_name: "PHPDocker.io"
+    design:
+        form_theme: 'vertical'
+    entities:
+        Category:
+            label: 'Categories'
+            class: AppBundle\Entity\ORM\Category
+            list:
+                title: 'Categories'
+                fields:
+                    - id
+                    - title
+                    - slug
+                    - createdAt
+            form:
+                title: 'Add a new category'
+                fields:
+                    - { property: title, css_class: 'col-lg-6 col-md-6' }
+
+        Post:
+            label: 'Posts'
+            class: AppBundle\Entity\ORM\Post
+            list:
+                title: 'Posts'
+                fields:
+                    - id
+                    - title
+                    - slug
+                    - category
+                    - createdAt
+                    - active
+            form:
+                title: 'Add a new post'
+                fields:
+                    - { property: title, css_class: 'col-lg-6 col-md-6' }
+                    - { property: bodyIntro }
+                    - { property: body }
+                    - { property: category, label: 'Link to category', css_class: 'col-lg-6 col-md-6'}
+                    - { property: active, label: 'Is active', css_class: 'col-lg-6 col-md-6'}
+            edit:
+                title: 'Edit post'

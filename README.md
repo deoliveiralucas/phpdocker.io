@@ -24,7 +24,9 @@ Running the project
 
 Project is given with a [PHPDocker.io](http://phpdocker.io) generated environment. 
 
-I would recommend you install in your host php cli 7.1+, bower and composer and run the usual steps manually, but it's not necessary - the [`./prepare-dev.sh`](prepare-dev.sh) script will set up the app (bower install, composer install, etc) through docker and docker-compose commands.
+The backend is a symfony application, which also generates the frontend and it's integrating Symfony Encore, webpack and yarn to provision and build the frontend assets.
+
+I would recommend you install in your host php cli 7.2+, yarn and composer and run the usual steps manually, but it's not necessary - the [`./prepare-dev.sh`](prepare-dev.sh) script will set up the app (bower install, composer install, etc) through docker and docker-compose commands. There's a `frontend-builder` container whose job is essentially `yarn install; yarn watch`.
 
   * Clone
   * Run [`./prepare-dev.sh`](prepare-dev.sh) - this will:
