@@ -51,15 +51,9 @@ class AvailableExtensionsFactory
     const PHP_VERSION_74 = '7.4.x';
 
     /**
-     * PHP 5.6.x
-     */
-    const PHP_VERSION_56 = '5.6.x';
-
-    /**
      * Supported PHP versions
      */
     const SUPPORTED_VERSIONS = [
-        self::PHP_VERSION_56 => Php56AvailableExtensions::class,
         self::PHP_VERSION_70 => Php70AvailableExtensions::class,
         self::PHP_VERSION_71 => Php71AvailableExtensions::class,
         self::PHP_VERSION_72 => Php72AvailableExtensions::class,

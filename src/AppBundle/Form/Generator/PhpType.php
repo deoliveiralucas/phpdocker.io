@@ -18,7 +18,6 @@
 namespace AppBundle\Form\Generator;
 
 use AppBundle\Entity\Generator\PhpOptions;
-use PHPDocker\PhpExtension\Php56AvailableExtensions;
 use PHPDocker\PhpExtension\Php70AvailableExtensions;
 use PHPDocker\PhpExtension\Php71AvailableExtensions;
 use PHPDocker\PhpExtension\Php72AvailableExtensions;
@@ -55,12 +54,6 @@ class PhpType extends AbstractGeneratorType
                 'expanded' => false,
                 'multiple' => false,
                 'label'    => 'PHP Version',
-            ])
-            ->add('phpExtensions56', ChoiceType::class, [
-                'choices'  => $this->getExtensionChoices(Php56AvailableExtensions::create()->getOptional()),
-                'multiple' => true,
-                'label'    => 'Extensions (PHP 5.6.x)',
-                'required' => false,
             ])
             ->add('phpExtensions70', ChoiceType::class, [
                 'choices'  => $this->getExtensionChoices(Php70AvailableExtensions::create()->getOptional()),

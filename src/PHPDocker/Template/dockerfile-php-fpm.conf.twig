@@ -8,10 +8,8 @@
         {% set image = 'phpdockerio/php72-fpm:latest' %}
     {% elseif phpVersion == '7.3.x' %}
         {% set image = 'phpdockerio/php73-fpm:latest' %}
-    {% elseif phpVersion == '7.4.x' %}
-        {% set image = 'phpdockerio/php74-fpm:latest' %}
     {% else %}
-        {% set image = 'phpdockerio/php56-fpm:latest' %}
+        {% set image = 'phpdockerio/php74-fpm:latest' %}
     {% endif %}
 FROM {{ image }}
 WORKDIR "/application"
@@ -35,9 +33,7 @@ RUN apt-get update \
 
 {% if applicationType == 'phalcon' %}
     {% spaceless %}
-        {% if phpVersion == '5.6.x' %}
-            {% set phalconPackage = 'php5-phalcon' %}
-        {% elseif phpVersion == '7.0.x' %}
+        {% if phpVersion == '7.0.x' %}
             {% set phalconPackage = 'php7.0-phalcon' %}
         {% elseif phpVersion == '7.1.x' %}
             {% set phalconPackage = 'php7.1-phalcon' %}

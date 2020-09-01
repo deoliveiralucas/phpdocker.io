@@ -90,11 +90,6 @@ class Php73AvailableExtensions extends BaseAvailableExtensions
             'XSL'                 => ['packages' => ['php7.3-xsl']],
             'YAML'                => ['packages' => ['php-yaml']],
             'ZeroMQ'              => ['packages' => ['php-zmq']],
-
-            // Disabled (not yet on php73 or broken)
-
-            // Installs php56
-            //            'Xhprof'      => ['packages' => ['php-xhprof']],
         ];
     }
 }

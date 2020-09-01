@@ -90,15 +90,6 @@ class Php72AvailableExtensions extends BaseAvailableExtensions
             'XSL'                 => ['packages' => ['php7.2-xsl']],
             'YAML'                => ['packages' => ['php-yaml']],
             'ZeroMQ'              => ['packages' => ['php-zmq']],
-
-            // Disabled (not yet on php72 or broken)
-
-            // libgearman broken (libgearman8 not on repos)
-            //
-
-            // Installs php56
-            //            'Xhprof'      => ['packages' => ['php-xhprof']],
-
         ];
     }
 }
